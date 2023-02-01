@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping(value = "/fruit")
-public class FruitController {
+@RequestMapping("/fruit")
+public class FruitController {//Clase que controla la entity
     @Autowired
     FruitRepository fruitRepository;
 
-    @GetMapping(value = "/getOne/{id}")
+    @GetMapping("/getOne/{id}")
     public ResponseEntity<Fruit> getOne(@PathVariable("id") long id){
         Optional<Fruit> fruitData = fruitRepository.findById(id);
 
@@ -28,7 +28,7 @@ public class FruitController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping(value = "/add")
+    @PostMapping("/add")
     public ResponseEntity<Fruit> add(@RequestBody Fruit fruitAdd){
         try{
             Fruit fruitAddIn = fruitRepository.save(new Fruit(fruitAdd.getName(),
@@ -39,7 +39,7 @@ public class FruitController {
         }
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Fruit> update(@PathVariable("id") long id,@RequestBody Fruit fruitModify){
         Optional<Fruit> fruitData = fruitRepository.findById(id);
 
@@ -83,9 +83,5 @@ public class FruitController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-    @GetMapping(value = "/HelloWorld")
-    public String saluda(@RequestParam(defaultValue = "UNKNOW") String name){//Definimos que si es llamado con la recepción de un nombre lo recibirá, de no ser así name = UNKNOW
-        return "Hello, " + name + ". You are running a Maven project";
     }
 }
