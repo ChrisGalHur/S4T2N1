@@ -15,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/fruit")
 public class FruitController {//Clase que controla la entity
+
     @Autowired
     FruitRepository fruitRepository;
 
@@ -28,6 +29,7 @@ public class FruitController {//Clase que controla la entity
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @PostMapping("/add")
     public ResponseEntity<Fruit> add(@RequestBody Fruit fruitAdd){
         try{
@@ -61,7 +63,6 @@ public class FruitController {//Clase que controla la entity
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @GetMapping(value = "/getAll")
