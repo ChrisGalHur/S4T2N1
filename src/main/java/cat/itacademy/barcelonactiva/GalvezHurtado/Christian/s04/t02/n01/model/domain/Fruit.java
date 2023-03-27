@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     @Column(name = "Name")
     private String name;
     @Column(name = "KG")
